@@ -1,0 +1,50 @@
+name:                miniproject
+version:             0.1.0.0
+github:              "lihram/miniproject-2-2019-fall"
+license:             BSD3
+author:              "Hilmar Gústafsson"
+maintainer:          "hilmargustafs@gmail.com"
+copyright:           "2019 Hilmar Gústafsson"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/lihram/miniproject-2-2019-fall#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- containers >= 0.6.0.1 && < 1
+- bytestring >= 0.10.8.2 && < 1
+
+library:
+  source-dirs: src
+
+executables:
+  miniproject-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - miniproject
+
+tests:
+  miniproject-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - miniproject

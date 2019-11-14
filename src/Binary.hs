@@ -9,6 +9,7 @@ import Data.Char (digitToInt, chr, intToDigit, ord)
 import Numeric (showIntAtBase)
 import qualified Data.ByteString as BS
 import Data.ByteString.Char8 (pack, unpack)
+import Util (chunksBy)
 
 strToBytes :: String -> BS.ByteString
 strToBytes = pack . map strToChar . chunksOf8 . strPad
@@ -30,16 +31,7 @@ strPad str = pad padLength str
             | l == 0 = str 
             | otherwise = pad (l - 1) ('0' : str)
 
-chunksBy :: (String -> (String, String)) -> String -> [String]
-chunksBy fun [] = []
-chunksBy fun str = chunk : chunksBy fun remainder
-    where (chunk, remainder) = fun str
-
 bytesToStr :: BS.ByteString -> String
 bytesToStr = concatMap (strPad . intToBin . ord) . unpack
     where
         intToBin = flip (showIntAtBase 2 intToDigit) ""
-
-unchanged = strToBytes . bytesToStr
-
--- -- $> unchanged $ pack "Hello, world!"

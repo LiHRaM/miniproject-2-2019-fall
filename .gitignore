@@ -1,4 +1,3 @@
-out/
-*.hi
-*.o
-*.exe
+.stack-work/
+miniproject.cabal
+*~
